@@ -1,0 +1,42 @@
+/* .net framework- windows */
+
+
+/* mono */
+
+
+/* .Net core 跨平台 */
+
+
+/* 除了过时的winform asp.net webform不支持 */
+
+
+/* 
+mkdir $1-创建文件夹
+
+cd $1-打开文件
+
+dotnet new classlib -o $1.Service
+
+dotnet new mvc -o $1.Web
+
+dotnet new sln
+
+dotnet sln $1.sln add $1.Service/$1.Service.csproj
+
+dotnet sln $1.sln add $1.Web/$1.Web.csproj
+
+dotnet add $1.Web/$1.Web.csproj reference $1.Service/$1.Service.csproj
+
+cd $1.Service
+
+dotnet add package Pomelo.EntityFrameworkCore.Mysql
+
+dotnet restore
+
+cd ..
+
+cd $1.Web
+
+dotnet add package Newtonsoft.Json
+
+dotnet restore */
