@@ -194,3 +194,10 @@ README.md */
 
 /* 我们把dev分支的工作成果合并到master分支上：
 $ git merge dev */
+
+
+/* 删除分支 */
+
+
+/* $ git branch -d dev
+Deleted branch dev (was fec145a). */
