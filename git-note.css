@@ -1,3 +1,6 @@
+/* #注册用户名 邮箱 */
+
+
 /* $ git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com" */
 
@@ -6,10 +9,19 @@ $ git config --global user.email "email@example.com" */
 $ git config --global user.email "287572291@qq.com" */
 
 
+/* #git初始化 */
+
+
 /* $ git init */
 
 
+/* #至暂存区 */
+
+
 /* $ git add readme.txt */
+
+
+/* 暂存区至工作区 */
 
 
 /* $ git commit -m "wrote a readme file" */
@@ -27,6 +39,9 @@ git commit命令执行成功后会告诉你，1个文件被改动（我们新添
 插入了两行内容（readme.txt有两行内容）。 */
 
 
+/* #git日志 */
+
+
 /* $ git log */
 
 
@@ -39,9 +54,11 @@ $ git log --pretty=oneline */
 /* log中有很长一段字符串，是一个SHA1计算出来的一个非常大的数字，用十六进制表示 */
 
 
+/* #git回退 */
+
+
 /* 
 我们要把当前版本“append GPL”回退到上一个版本“add distributed”，就可以使用git reset命令：
-
 $ git reset --hard HEAD^
 HEAD is now at ea34578 add distributed */
 
@@ -55,7 +72,14 @@ HEAD is now at 3628164 append GPL */
 就无法确定是哪一个了。 */
 
 
-/* 在Git中，总是有后悔药可以吃的。当你用$ git reset --hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：
+/* #git回退到指定版本 */
+
+
+/* 在Git中，总是有后悔药可以吃的。当你用$ git reset --hard HEAD^回退到add distributed版本时，
+再想恢复到append GPL，
+就必须找到append GPL的commit id。
+Git提供了一个命令git reflog用来记录你的每一次命令：
+
 
 $ git reflog
 ea34578 HEAD@{0}: reset: moving to HEAD^
@@ -76,6 +100,9 @@ cb926e7 HEAD@{3}: commit (initial): wrote a readme file */
 $ git status
 # On branch master
 nothing to commit (working directory clean) */
+
+
+/* #让这个文件回到最近一次git commit或git add时的状态 */
 
 
 /* 
@@ -103,6 +130,9 @@ Unstaged changes after reset:
 M       readme.txt */
 
 
+/* #git删除文件 */
+
+
 /* 
 $ git rm test.txt
 rm 'test.txt'
@@ -112,14 +142,20 @@ $ git commit -m "remove test.txt"
  delete mode 100644 test.txt */
 
 
+/* #git远程与github建立连接 */
+
+
 /* 
  现在，我们根据GitHub的提示，在本地的learngit仓库下运行命令：
 
-$ git remote add origin https://github.com/RandyField/learn-note-randy.git */
+$ git remote add origin https://github.com/RandyField/learn-note-randy.git 
+
+$ git remote add origin git@github.com:RandyField/learn-note-randy.git \
+
+*/
 
 
-/* https://github.com/RandyField/learn-note-randy.git
-$ git remote add origin git@github.com:RandyField/learn-note-randy.git */
+/* git提交至github */
 
 
 /* $ git push -u origin master */
@@ -137,3 +173,14 @@ Receiving objects: 100% (3/3), done.
 $ cd gitskills
 $ ls
 README.md */
+
+
+/*  $ git checkout -b dev 
+
+    git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+
+    $ git branch dev
+    $ git checkout dev
+    Switched to branch 'dev'
+
+*/
