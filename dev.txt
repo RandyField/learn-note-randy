@@ -1,5 +1,3 @@
-<<<<<<< HEAD
+
 add by branch master
-=======
 add by test branch
->>>>>>> test
