@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>
+        helloworld
+    </title>
+    <script src="asset/d3.min.js"></script>
+</head>
+<style>
+    .axis path,
+    .axis line{
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+    
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+    </style>
+<body>
+    <script>
+    // 1   添加svg-添加画布
+    var width=300;
+    var height=300;
+
+    var svg=d3.select('body')
+    .append("svg")
+    .attr('width',width )
+    .attr('height',height );
+
+    // 2 绘制图形
+    var dataset=[250,210,170,130,90];
+
+    var rectHeight=25;
+
+    //  2.1定义矩形宽度比例尺
+        var min = d3.min(dataset); //获取最小值
+        var max = d3.max(dataset); //获取最大值
+
+        var linear1 = d3.scale.linear() //返回一个线性比例尺-返回值，且是一个函数 alter(linear) ,function
+                .domain([min, max]) //定义域
+                .range([0, 300]); //值域
+
+    
+
+    //  2.2定义坐标轴
+        var datatest = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];
+        //定义比例尺
+        var linear2 = d3.scale.linear()
+            .domain([0, d3.max(datatest)])
+            .range([0, 250]);
+
+        var axis = d3.svg.axis()
+            .scale(linear2)      //指定比例尺
+            .orient("bottom")   //指定刻度的方向
+            .ticks(7);          //指定刻度的数量-这个严格说只是控制刻度的数量，并非指定刻度的个数
+
+
+    svg.selectAll("rect")   //选择svg内所有矩形
+        .data(dataset)      //绑定数组
+        .enter()            //指定选择集带enter部分
+        .append("rect")     //添加足够数量的矩形元素     ----------有数据，而没有足够图形元素的时候，使用此方法可以添加足够的元素。
+        .attr("x",20)
+        .attr('y',function(data,index){
+            return index*rectHeight;
+        } )
+        .attr('width',function(data){
+            return linear1(data); //这里可以运用比例尺----参考比例尺笔记
+        } )
+        .attr('height',rectHeight-2 )
+        .attr('fill',"steelblue" );
+
+        //分组元素 <g>，是 SVG 画布中的元素，意思是 group。
+        //此元素是将其他元素进行组合的容器，在这里是用于将坐标轴的其他元素分组存放。
+    svg.append("g")
+			.attr("class","axis")
+			.attr("transform","translate(50,130)")  //指定对象的2D translation（2D平移）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认值为0
+			.call(axis);
+    </script>
+</body>
+
+</html>

@@ -53,3 +53,64 @@ Canvas 有如下特点：
 
 /* D3 虽然没有明文规定一定要在 SVG 中绘图，但是 D3 提供了众多的 SVG 图形的生成器，
 它们都是只支持 SVG 的。因此，建议使用 SVG 画布。 */
+
+/* 比例尺   */
+
+/* 线性比例尺 */
+/* var dataset = [1.2, 2.3, 0.9, 1.5, 3.3];
+将 dataset 中最小的值，映射成 0；将最大的值，映射成 300。
+var min = d3.min(dataset); //获取最小值
+var max = d3.max(dataset); //获取最大值
+
+var linear = d3.scale.linear() //返回一个线性比例尺-返回值，且是一个函数 alter(linear) ,function
+        .domain([min, max]) //定义域
+        .range([0, 300]); //值域
+
+linear(0.9);    //返回 0
+linear(2.3);    //返回 175
+linear(3.3);    //返回 300 */
+
+
+/* 序数比例尺 */
+/* 
+定义域和值域不一定是连续的。
+var index = [0, 1, 2, 3, 4];
+var color = ["red", "blue", "green", "yellow", "black"];
+0 对应颜色 red，1 对应 blue，依次类推。
+，这些值都是离散的，线性比例尺不适合，需要用到序数比例尺。
+var ordinal=d3.scale.ordinal()
+                    .domain(index)
+                    .range(color);
+
+                    ordinal(0); //返回 red
+                    ordinal(2); //返回 green
+                    ordinal(4); //返回 black
+ */
+
+/* 坐标轴 */
+/* 在 SVG 画布的预定义元素里，有六种基本图形：
+
+    矩形 <rect>
+    圆形 <circle>
+    椭圆 <ellipse>
+    线段 <line>
+    折线 <polyline>
+    多边形 <polygon>
+
+另外，还有一种比较特殊，也是功能最强的元素：
+
+    路径 <path>
+
+画布中的所有图形，都是由以上七种元素组成。 */
+
+
+
+
+
+
+
+
+
+
+
+

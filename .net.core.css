@@ -39,4 +39,7 @@ cd $1.Web
 
 dotnet add package Newtonsoft.Json
 
-dotnet restore */
+dotnet restore 
+
+dotnet publish
+*/
