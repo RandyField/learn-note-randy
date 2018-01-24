@@ -103,14 +103,150 @@ var ordinal=d3.scale.ordinal()
 
 画布中的所有图形，都是由以上七种元素组成。 */
 
+/* 
+rect 里没有矩形的属性。矩形的属性，常用的有四个：
+
+    x：矩形左上角的 x 坐标
+    y：矩形左上角的 y 坐标
+    width：矩形的宽度
+    height：矩形的高度
+ */
+
+/* 动态效果
+
+    transition() 过渡
+        .attr("fill","red")         //初始颜色为红色
+        .transition()               //启动过渡
+        .attr("fill","steelblue")   //终止颜色为铁蓝色
+
+    duration() 过渡的持续时间,毫秒
+
+    ease() 过渡的方式
+
+            linear：普通的线性变化
+            circle：慢慢地到达变换的最终状态
+            elastic：带有弹跳的到达最终状态
+            bounce：在最终状态处弹跳几次
+
+    delay() 延迟时间延迟的时间，表示一定时间后才开始转变，单位同样为毫秒。
+            此函数可以对整体指定延迟，也可以对个别指定延迟。
+            .transition()
+            .duration(1000)
+            .delay(500)
+                如此，图形整体在延迟 500 毫秒后发生变化，变化的时长为 1000 毫秒。因此，过渡的总时长为1500毫秒。
+
+*/
 
 
 
 
+/* Update、Enter、Exit */
+
+/* 
+update 部分的处理办法一般是：更新属性值
+enter 部分的处理办法一般是：添加元素后，赋予属性值
+exit 部分的处理办法一般是：删除元素（remove）
+ */
+
+ /* 用户用于交互的工具一般有三种：鼠标、键盘、触屏。 */
+
+
+ /* click：鼠标单击某元素时，相当于 mousedown 和 mouseup 组合在一起。
+ mouseover：光标放在某元素上。
+ mouseout：光标从某元素上移出来时。
+ mousemove：鼠标被移动的时候。
+ mousedown：鼠标按钮被按下。
+ mouseup：鼠标按钮被松开。
+ dblclick：鼠标双击。
+ */
+
+/* 
+ 键盘常用的事件有三个：
+
+    keydown：当用户按下任意键时触发，按住不放会重复触发此事件。该事件不会区分字母的大小写，例如“A”和“a”被视为一致。
+    keypress：当用户按下字符键（大小写字母、数字、加号、等号、回车等）时触发，按住不放会重复触发此事件。该事件区分字母的大小写。
+    keyup：当用户释放键时触发，不区分字母的大小写。 */
+
+/* 触屏常用的事件有三个：
+
+    touchstart：当触摸点被放在触摸屏上时。
+    touchmove：当触摸点在触摸屏上移动时。
+    touchend：当触摸点从触摸屏上拿开时。 */
+
+/* // .on事件不能放在.transition代码段后面，否则运行到.on会报错。将
+    .on事件放在.transition前面。 */
 
 
 
+    /* 用过的highchart 大部分可视化工具
+    数据-----绘图函数-----图表(这种着重点在数据,数据的呈现形势也是提前知道的,所以直接选中绘图函数即可,) */
+
+    
+
+    /* 对比D3.js
+    数据-------布局-------获得绘图所需数据-------在画布上添加相应的图形--------图标  */
+
+
+/* 
+    选择 D3：如果希望开发脑海中任意想象到的图表。
+    选择 Highcharts、Echarts 等：如果希望开发几种固定种类的、十分大众化的图表。 */
 
 
 
+    /* 2. 如何理解布局
 
+从上面的图可以看到，布局的作用是：将不适合用于绘图的数据转换成了适合用于绘图的数据。
+
+因此，为了便于初学者理解，本站的教程叫布局的作用解释成：数据转换。 */
+
+/* 
+D3 总共提供了 12 个布局：
+            饼状图（Pie）、
+            力导向图（Force）、
+            弦图（Chord）、
+            树状图（Tree）、
+            集群图（Cluster）、
+            捆图（Bundle）、
+            打包图（Pack）、
+            直方图（Histogram）、
+            分区图（Partition）、
+            堆栈图（Stack）、
+            矩阵树图（Treemap）、
+            层级图（Hierarchy）。
+
+12 个布局中，层级图（Hierarchy）不能直接使用。
+            集群图、打包图、分区图、树状图、矩阵树图是由层级图扩展来的。
+        如此一来，能够使用的布局是 11 个（有 5 个是由层级图扩展而来）。
+        这些布局的作用都是将某种数据转换成另一种数据，而转换后的数据是利于可视化的。 */
+
+
+/* 
+当窗口大小变化的时候，令SVG的大小也随之更新，当然，其他图形也要重新计算。写在 window.onresize 里即可。
+        var w = window,
+        d = document,
+        e = d.documentElement,
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", x)
+                .attr("height", y);
+    
+    function updateWindow(){
+        x = w.innerWidth || e.clientWidth || g.clientWidth;
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    
+        console.log(x);
+        console.log(y);
+    
+        svg.attr("width", x)
+            .attr("height", y);
+    }
+    window.onresize = updateWindow; */
+
+
+    /* <svg>
+        <g fill="" d=""></g>
+        <text transform="" text-anchor=""></text>
+    </svg> */
