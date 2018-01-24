@@ -1,0 +1,107 @@
+
+/* **************************************************************************网易云音乐************************************************** */
+/* #安装网易云音乐(linux下开发不意味着就是无声的) */
+
+/* 网易云音乐支持的平台还是很多的，选择Linux版，
+然后根据自己系统的发行版选择
+根据自己的系统选择32位或者64位的软件包
+
+下载
+
+sudo dpkg -i netease-cloud-music_x.x.x_amd64_ubuntuxx.xx.deb
+
+如果这时提示安装错误，一般是缺少依赖包造成的
+
+sudo apt install -f
+
+依赖关系修复完之后，回到刚才的那条安装命令
+
+sudo dpkg -i netease-cloud-music_x.x.x_amd64_ubuntuxx.xx.deb */
+
+/* #启动网易云音乐
+sudo netease-cloud-music[tab][tab] */
+
+
+/* **************************************************************************Visual Studio Code************************************************** */
+
+/* 既然是开发人员，linux当然要用微软一统江湖的编辑器，各种牛逼插件
+https://code.visualstudio.com/
+sudo dpkg -i code_x.xx.x-1515599945_amd64.deb
+
+启动用code /../../.. */
+
+
+/* **************************************************************************Git************************************************** */
+/* https://git-scm.com/download/linux */
+
+/* 我没有用上面的网站的命令 
+直接使用的
+sudo apt-get install git */
+
+
+/* **************************************************************************.netcore************************************************** */
+
+/* 作为一个前面职业生涯都是靠微软活着，.net core出来啦，肯定要去学习，再加上是跨平台，
+有什么理由不去在linux下装起跑一下呢。 */
+
+/* https://www.microsoft.com/net/learn/get-started/linuxubuntu */
+
+/* 1.Register the trusted Microsoft signature key:
+
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg */
+
+/* 2.Register the Microsoft Product feed
+Ubuntu 16.04/Linux Mint 18
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list' */
+
+/* 3.Install .NET SDK
+
+Update the products available for installation, then install the .NET SDK.
+
+In your command prompt, run the following commands: 
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.1.4 */
+
+
+/* **************************************************************************Mysql************************************************** */
+/* sudo apt-get -y install mysql-server mysql-client
+你会被要求提供MySQL的root用户密码 ：
+
+New password for the MySQL “root” user: <– yourrootsqlpassword
+Repeat password for the MySQL “root” user: <– yourrootsqlpassword */
+
+
+/* **************************************************************************Nginx************************************************** */
+/* 在你已经安装了Apache2的话，那么使用这些命令先删除再安装nginx：
+
+service apache2 stop
+update-rc.d -f apache2 remove
+apt-get remove apache2
+
+    Ubuntu16.04有Nginx安装包，我们可以安装。
+
+    下载安装: sudo apt-get -y install nginx    
+
+    启动nginx：service nginx start 
+    
+    systemctl start nginx #启动nginx
+
+    systemctl enable nginx #设置nginx的开机启动
+
+    自己写好页面，比如一个静态html，适配手机端，需要发布到nginx，然后通过内网访问
+
+    firewall-cmd --zone=public --add-port=80/tcp --permanent #（开放80端口）
+
+    程序“firewall-cmd”尚未安装。 您可以使用以下命令安装：
+    sudo apt install firewalld
+
+    systemctl restart firewalld #（重启防火墙以使配置即时生效）
+    */
+
+/* **************************************************************************Node.js npm************************************************** */    
+/* 现在前端工程化，nodejs就离不开啦
+
+sudo apt-get install nodejs-legacy nodejs
+sudo apt-get install npm */
