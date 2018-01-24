@@ -90,7 +90,7 @@ apt-get remove apache2
 
     systemctl enable nginx #设置nginx的开机启动
 
-    自己写好页面，比如一个静态html，适配手机端，需要发布到nginx，然后通过内网访问
+    自己写好页面，比如一个静态html，适配手机端，需要发布到nginx，然后通过内网访问,发给微信端调试
 
     firewall-cmd --zone=public --add-port=80/tcp --permanent #（开放80端口）
 
