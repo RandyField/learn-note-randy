@@ -1,0 +1,25 @@
+	#添加部分-虚拟主机的配置
+server{
+	#监听端口
+	listen				80;
+
+	#域名可以有多个,用空格隔开
+	server_name			localhost:5000;
+	
+
+	#access-log logs/host.access.log main;
+	location /{
+		#默认站点路径
+		root	html;
+		index	index.html index.htm;
+	}
+
+	#error_page 404 	/404.html
+	#redirect server error pages to the static page /50x.html
+	#默认错误内容展示页
+	error_page 500 502 503 504 /50x.html
+	location=/50x.html{
+		root	html;
+	}
+	#proxy the PHP script to Apache listening on 127.0.0.1:80
+}
