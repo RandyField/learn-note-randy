@@ -125,3 +125,15 @@ xzm@ubuntu:~$  sudo apt-get install google-chrome-stable
 xzm@ubuntu:~$  /usr/bin/google-chrome-stable
  */
 
+
+/* **************************************************************************搜狗拼音************************************************** */    
+ 
+      /* 下载搜狗输入法的安装包
+
+下载地址为：http://pinyin.sogou.com/linux/ ,如下图，要选择与自己系统位数一致的安装包，
+sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb  
+
+从系统设置里面点击“语言支持”，一开始的系统里面是没有小企鹅输入法的，搜狗输入法就是在小企鹅输入法基础上安装的，从语言支持里面选择小企鹅输入法（fcitx），默认为ibus
+点击语言支持后，有时候会出现以下错误，不要慌，下面有解决方案
+
+sudo apt-get install -f   */
