@@ -136,3 +136,62 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
  Nuget    add  or  remove
  */
+
+/* ****************************************************************
+**************************************************************** */
+
+/* 建立.net core 解决方案  使用vscode和.net core dotnet命令行 */
+
+
+/*1.建立.net core mvc项目  
+
+mkdir randy-net-core-sln
+cd randy-net-core-sln
+dotnet new mvc -o Web 
+
+  2.建立BLL类库
+dotnet new classlib -o BLL
+
+  3.建立DAL类库
+dotnet new classlib -o DAL
+
+  4.建立DAL类库
+dotnet new classlib -o IDAL
+
+  5.建立MODEL类库
+dotnet new classlib -o MODEL
+
+  6.建立解决方案
+dotnet new sln
+  注意 以上,都是在执行了cd randy-net-core-sln目录后,执行的命令
+
+
+  7.把上面所有的项目加入解决方案
+dotnet sln randy-net-core-sln.sln add BLL/BLL.csproj
+
+dotnet sln randy-net-core-sln.sln add DAL/DAL.csproj
+
+dotnet sln randy-net-core-sln.sln add IDAL/IDAL.csproj
+
+dotnet sln randy-net-core-sln.sln add MODEL/MODEL.csproj
+
+dotnet sln randy-net-core-sln.sln add Web/Web.csproj
+
+   8.web project中引入其余classlib project
+dotnet add Web/Web.csproj reference BLL/BLL.csproj
+
+dotnet add Web/Web.csproj reference MODEL/MODEL.csproj
+
+   9.通用引入package(eg:引入Newtonsoft.Json)
+cd Web
+dotnet add package Newtonsoft.Json
+
+   10.大多数时候我们并不记得package name,所以使用上面的nuget package manager
+
+   11.当执行完9-10步以后,我就在想,sln文件有什么用呢,web project已经引入了其余project,sln好像没什么用,
+   看sln的资料,感觉就是为之前visual studio 2017 ide服务的,喔,突然想起了以前开发时,双击sln文件,就直接
+   用vs打开了整个解决方案,所以这里我姑且猜测,我们在ubuntu或者其他linux发行版开发时,我们是不需要建立解决
+   方案.
+
+   12.补充,cd Web目录下,dotnet publish -o ../Publish
+*/
