@@ -5,3 +5,139 @@
     --按照配置文档跑步起来
     --搬家困难
     --逐台配置累死人 */
+
+/* Docker只是其中一个容器方案。
+    拿它的Logo简单说明：
+    
+    你可以想象一下，一个船舶（主机）要运输货物（承载各种程序），
+    
+    第一种方案是各种各样，
+    千奇百怪的货物（你开发的系统）全部一股脑的放上甲板（服务器）内，
+    可能导致的后果就是各种货物会互相混淆，说不定连主人都找不到了。
+    
+    但是把它们归好类别，按一定的规则存储到集装箱（Docker Container），
+    每个集装箱（相当于不同的运行时环境）是互相独立，互不影响的，保证了货物完好无损的送到主人的手上。
+    即我们的程序可以完全独立的运行，保障了更好的，更稳定的环境呈现给客户！
+
+    另外一种比喻:Docker就像是快递公司，将您的货品打包一下，然后同车运送，保证货物顺利完好到达您手上。 */
+
+    /* 而容器则是自动化部署的反方向，发布单独程序文件不解气，打包发布，打包发布还不解气，
+    web服务器组件发布，
+    web服务器组件发布还不解气，然后操作系统配置一起发布。 */
+
+/* 相关概念介绍
+
+    Image镜像和Container容器：你可以把两者理解为类和实例对象，
+    或者是ISO系统镜像和虚拟机的关系。不同的Image所包含的软件或者环境是不同的，
+    但是你可以使用Dockerfile（docker特有语法规则所创建的文件）进行管理。
+    而Container则是以Image作为模板，可以独立运行的微型系统，
+    一个Image可以创建出来多个Container容器的实例
+
+    Registry：Docker Hub镜像仓库，为每个人提供庞大的镜像资源进行拉取和使用
+
+    Dockerfile：是一个将镜像命令组合在一起的文件，用于Image的自动构建 */
+
+
+
+/* 一、安装Docker
+
+    a）、设置Docker仓库
+    
+    1、按惯例，首先更新Ubuntu的包索引
+    
+    $ sudo apt-get update
+    
+    2、让服务器可以使用Https更新仓库
+    
+    $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+    
+    3、添加Docker官方的密钥对，如果没问题，会返回“OK”
+    
+    $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    
+    4、校验密钥（9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88）是否和官方一致
+    
+    $ sudo apt-key fingerprint 0EBFCD88
+    
+    5、设置官方稳定版的仓库来源
+    
+    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    
+    b）、安装Docker
+    
+    1、再次更新下包索引，因为刚才加了Docker仓库，确保是否命中了Docker源
+    
+    $ sudo apt-get update
+    
+    2、安装最新版本的Docker-CE社区版
+    
+    $ sudo apt-get install docker-ce
+    
+    3、需要安装其他版本的请使用以下命令
+    
+    $ sudo apt-get install docker-ce=1.13
+    
+    4、查看是否安装成功
+    
+    $ docker version
+    
+    5、试着运行一个测试镜像，万能的Hello World！
+    
+    $ sudo docker run hello-world
+     */
+
+/*  ********************************************************************************   
+     https://yq.aliyun.com/articles/63035?spm=a2c4e.11153940.blogcont63517.17.38dfe743onmQfn
+    1. 查看一下我们拥有了哪些images吧,命令： docker images 
+
+    2.再查看一下我们有哪些Docker Container吧,命令： docker ps 
+
+    3.下面我们从Docker hub的Registry下载一个Image，命令: docker pull image-name 
+
+        3.1再看一下现在images,命令： docker images 
+    
+    4.我们把hello-world的image，放到一个docker container里面让他跑起来吧。命令 docker run image-name 
+        docker run hello-world
+
+    5.我们最后再看一下是否真的创建了docker container,命令 docker ps -a  */
+
+
+/* sudo docker pull microsoft/dotnet    //从docker仓库拉取一个名称为“microsoft/dotnet”的镜像
+
+    sudo docker build light    //构建一个名称为light的容器
+    
+    sudo docker run hello-world    //运行hello-world容器
+    
+    sudo docker images    //查看所有镜像
+    
+    sudo docker rmi 63sf86332e    //删除一个imageid的镜像
+    
+    sudo docker rmi $(docker images -q)    //删除所有镜像
+    
+    sudo docker ps -a    //查看所有容器
+    
+    sudo docker rm 6f0c67de4b72    //删除一个containerid的容器
+    
+    sudo docker rm $(sudo docker ps -a -q)   //删除所有容器 */
+
+
+
+
+
+    /* sudo docker pull microsoft/dotnet:latest --registry-mirror=http://hub-mirror.c.163.com */
+
+
+/* 
+    创建Dockerfile文件，并将其配置成以下内容
+
+    sudo docker run -it  microsoft/dotnet　　//每次run，都会重新构造出新的互不影响的容器，请自行查看 */
+
+
+/* 
+    FROM microsoft/dotnet 
+WORKDIR /app
+COPY ./publish .
+ENTRYPOINT ["dotnet", "Light.Web.dll"] */
+
+
+/* sudo docker build -t ContainerName .　　//注意后边还有一个点呢 */

@@ -194,4 +194,7 @@ dotnet add package Newtonsoft.Json
    方案.
 
    12.补充,cd Web目录下,dotnet publish -o ../Publish
+
+      使用cli命令发布项目，这时可以不用指定运行时标识，直接发布，如果项目不是运行在服务器（Windows或Linux）上的。
+      dotnet publish -c Release -o ../Publish
 */
