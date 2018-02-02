@@ -206,3 +206,55 @@ dotnet add package Newtonsoft.Json
 
 /* 基础知识中 
 1.应用程序启动(遗漏 启动筛选器) */
+
+
+/* 异步编程是asp.net core 和ef core的默认模式
+web服务器的available线程数量是有限的
+并且在高负载情况下,所有的available线程可能都在使用
+
+这种情况下,服务器是无法处理请求的,除非线程被释放
+
+在同步代码中,多个线程可能启用,但是他们实际上是什么都没用做,
+因为他们可能正则等待I/O完成
+
+而在异步代码中,当一个进程在等待I/O完成时,对于服务器来讲,它的线程
+是被释放的,而去处理其他请求.
+
+所以,异步代码的使用,使服务器资源能够更加有效的使用,去接收更多流量的请求
+而不会延迟.
+
+运行时,异步代码引入,会有少量的开销,
+
+低流量的情况下,这种引入对性能的影响可以忽略不计的,
+高流量的情况下,对性能的影响就是想当大的. */
+
+/* public async Task OnGetAsync()
+{
+    Student = await _context.Students.ToListAsync();
+}
+
+    async关键字告知编译器对：
+        生成方法体的部分的回调。
+        自动创建任务返回的对象。 有关详细信息，请参阅任务返回类型。
+
+    隐式返回类型Task表示正在进行的工作。
+
+    await关键字会导致编译器拆分为两个部分的方法。 第一部分结尾以异步方式启动该操作。 第二部分被放入操作完成时调用的回调方法。
+
+    ToListAsync是的异步版本ToList扩展方法。 */
+
+/* 编写异步代码,使用EF CORE时需要考虑的事项
+1.以异步的方式执行查询或者命令到数据库的语句
+  这包括 ToListAsync， 
+        SingleOrDefaultAsync， 
+        FirstOrDefaultAsync，和
+        SaveChangesAsync。
+  不包括只是对IQueryable的更改的语句,eg:var students = context.Students.Where(s => s.LastName == "Davolio")
+
+2.EF CORE上下文不是线程安全的,所以不要尝试并行的多个操作.
+
+3.如果要充分利用异步代码的性能优势,验证库包(如分页),这些库包在调用EF CORE的方法中,
+  那些发送查询到数据库的方法是否使用了异步代码. */
+
+
+  /* // "MysqlDbConnectionString":"Server=localhost;Database=School;user=root;Password=randy1992;pooling=true;CharSet=utf8;port=3306;sslmode=none", */
