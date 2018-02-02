@@ -198,3 +198,11 @@ dotnet add package Newtonsoft.Json
       使用cli命令发布项目，这时可以不用指定运行时标识，直接发布，如果项目不是运行在服务器（Windows或Linux）上的。
       dotnet publish -c Release -o ../Publish
 */
+
+
+
+/* https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/startup
+*/
+
+/* 基础知识中 
+1.应用程序启动(遗漏 启动筛选器) */

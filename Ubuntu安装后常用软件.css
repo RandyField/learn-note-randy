@@ -72,6 +72,10 @@ sudo apt-get install dotnet-sdk-2.1.4 */
 New password for the MySQL “root” user: <– yourrootsqlpassword
 Repeat password for the MySQL “root” user: <– yourrootsqlpassword */
 
+/* service mysql start 
+   mysql -uroot -p
+*/
+
 
 /* **************************************************************************Nginx************************************************** */
 /* 在你已经安装了Apache2的话，那么使用这些命令先删除再安装nginx：

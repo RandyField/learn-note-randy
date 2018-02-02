@@ -140,4 +140,12 @@ COPY ./publish .
 ENTRYPOINT ["dotnet", "Light.Web.dll"] */
 
 
-/* sudo docker build -t ContainerName .　　//注意后边还有一个点呢 */
+/* 切换到Dockerfile所在的目录下，并执行构建命令，成功之后会有下图的提示
+
+sudo docker build -t lightweb .　　//注意后边还有一个点呢 */
+
+
+/* 运行刚才构建成功，名字为lightweb的容器，直接绑定服务器的8088端口
+
+sudo docker run -p 8088:8088 -e "ASPNETCORE_URLS=http://+:8088" lightweb */
+

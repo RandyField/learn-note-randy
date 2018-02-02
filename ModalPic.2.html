@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #myImg:hover {
+            opacity: 0.7;
+        }
+
+        /* The Modal (background) */
+
+        .modal {
+            display: none;
+            /* Hidden by default 默认隐藏*/
+            position: fixed;
+            /* Stay in place absolute一致，但偏移定位是以窗口为参考。当出现滚动条时，对象不会随着滚动。 */
+            z-index: 1;
+            /* Sit on top 置顶 */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0vw;
+            top: 0vh;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            /* Enable scroll if needed 不要滚动条 */
+            background-color: rgb(218, 155, 155);
+            /* Fallback color */
+            /* background-color: rgba(0, 0, 0, 0.9); */
+            /* Black w/ opacity 颜色和透明度*/
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        #myModalimg{
+            position: fixed;
+            display: none;
+            left: 20vw;
+            top: 10vh;
+            width: 60vw;
+            height: 60vh;
+            z-index: 2;
+        }
+        /* Modal Content (image) */
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 10%;
+            max-width: 700px;
+        }
+
+        /* Caption of Modal Image */
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Add Animation */
+
+        .modal-content,
+        #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            /*动画持续时间*/
+            animation-name: zoom;
+            animation-duration: 1s;
+        }
+
+        /*定义一种动画名称，form to*/
+
+        @-webkit-keyframes zoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        /*定义一种动画名称，form to*/
+
+        @keyframes zoom {
+            from {
+                transform: scale(0.1)
+            }
+            to {
+                transform: scale(1)
+            }
+        }
+
+        /* The Close Button */
+
+        .close {
+            position: absolute;
+            top: -10vh;
+            right: -10vw;
+            color: #0c0b0b;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 100% Image Width on Smaller Screens */
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>我在底部一层哟       
+    </div>
+    <!-- The Modal -->
+    <div id="myModalbg" class="modal">
+       
+    </div>
+    <div id="myModalimg">
+            <span class="close">×</span>
+            <img class="modal-content" id="img01">
+            <div id="caption">中奖了</div>
+    </div>
+    <script>
+        // 获取模态窗口背景
+        var modalbg = document.getElementById('myModalbg');
+        var modalcontent=document.getElementById('myModalimg');
+
+        // 获取图片模态框，alt 属性作为图片弹出中文本描述
+
+        var modalImg = document.getElementById("img01");
+
+        var captionText = document.getElementById("caption");
+
+
+        window.onload = function () {
+            modalbg.style.display = "block";
+            modalcontent.style.display = "block";
+            modalImg.src = "../assets/images/gallery/image-2.jpg";
+            modalImg.alt = this.alt;
+            captionText.innerHTML = "中奖了";
+        }
+        // 获取 <span> 元素，设置关闭模态框按钮
+        var span = document.getElementsByClassName("close")[0];
+
+        // 点击 <span> 元素上的 (x), 关闭模态框
+        span.onclick = function () {
+            modalbg.style.display = "none";
+            modalcontent.style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
