@@ -10,13 +10,12 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
+        
         #myImg:hover {
             opacity: 0.7;
         }
-
         /* The Modal (background) */
-
+        
         .modal {
             display: none;
             /* Hidden by default 默认隐藏*/
@@ -39,8 +38,8 @@
             opacity: 0.2;
             z-index: 1;
         }
-
-        #myModalimg{
+        
+        #myModalimg {
             position: fixed;
             display: none;
             left: 20vw;
@@ -50,16 +49,15 @@
             z-index: 2;
         }
         /* Modal Content (image) */
-
+        
         .modal-content {
             margin: auto;
             display: block;
             width: 10%;
             max-width: 700px;
         }
-
         /* Caption of Modal Image */
-
+        
         #caption {
             margin: auto;
             display: block;
@@ -70,9 +68,8 @@
             padding: 10px 0;
             height: 150px;
         }
-
         /* Add Animation */
-
+        
         .modal-content,
         #caption {
             -webkit-animation-name: zoom;
@@ -81,9 +78,8 @@
             animation-name: zoom;
             animation-duration: 1s;
         }
-
         /*定义一种动画名称，form to*/
-
+        
         @-webkit-keyframes zoom {
             from {
                 -webkit-transform: scale(0)
@@ -92,9 +88,8 @@
                 -webkit-transform: scale(1)
             }
         }
-
         /*定义一种动画名称，form to*/
-
+        
         @keyframes zoom {
             from {
                 transform: scale(0.1)
@@ -103,9 +98,8 @@
                 transform: scale(1)
             }
         }
-
         /* The Close Button */
-
+        
         .close {
             position: absolute;
             top: -10vh;
@@ -115,16 +109,15 @@
             font-weight: bold;
             transition: 0.3s;
         }
-
+        
         .close:hover,
         .close:focus {
             color: #bbb;
             text-decoration: none;
             cursor: pointer;
         }
-
         /* 100% Image Width on Smaller Screens */
-
+        
         @media only screen and (max-width: 700px) {
             .modal-content {
                 width: 100%;
@@ -134,21 +127,21 @@
 </head>
 
 <body>
-    <div>我在底部一层哟       
+    <div>我在底部一层哟
     </div>
     <!-- The Modal -->
     <div id="myModalbg" class="modal">
-       
+
     </div>
     <div id="myModalimg">
-            <span class="close">×</span>
-            <img class="modal-content" id="img01">
-            <div id="caption">中奖了</div>
+        <span class="close">×</span>
+        <img class="modal-content" id="img01">
+        <div id="caption">中奖了</div>
     </div>
     <script>
         // 获取模态窗口背景
         var modalbg = document.getElementById('myModalbg');
-        var modalcontent=document.getElementById('myModalimg');
+        var modalcontent = document.getElementById('myModalimg');
 
         // 获取图片模态框，alt 属性作为图片弹出中文本描述
 
@@ -157,18 +150,18 @@
         var captionText = document.getElementById("caption");
 
 
-        window.onload = function () {
-            modalbg.style.display = "block";
-            modalcontent.style.display = "block";
-            modalImg.src = "../assets/images/gallery/image-2.jpg";
-            modalImg.alt = this.alt;
-            captionText.innerHTML = "中奖了";
-        }
-        // 获取 <span> 元素，设置关闭模态框按钮
+        window.onload = function() {
+                modalbg.style.display = "block";
+                modalcontent.style.display = "block";
+                modalImg.src = "http://www.chinazhihuiping.com/wxredpackets/Content/image/ValentinesDay/error.png";
+                modalImg.alt = this.alt;
+                captionText.innerHTML = "中奖了";
+            }
+            // 获取 <span> 元素，设置关闭模态框按钮
         var span = document.getElementsByClassName("close")[0];
 
         // 点击 <span> 元素上的 (x), 关闭模态框
-        span.onclick = function () {
+        span.onclick = function() {
             modalbg.style.display = "none";
             modalcontent.style.display = "none";
         }
