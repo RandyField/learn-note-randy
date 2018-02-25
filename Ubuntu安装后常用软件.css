@@ -141,3 +141,13 @@ sudo dpkg -i sogoupinyin_2.1.0.0082_amd64.deb
 点击语言支持后，有时候会出现以下错误，不要慌，下面有解决方案
 
 sudo apt-get install -f   */
+
+/* 
+更新软件源
+
+    sudo apt-get -yyq update  
+
+
+更新所有的软件
+
+    sudo apt-get dist-upgrade   */
