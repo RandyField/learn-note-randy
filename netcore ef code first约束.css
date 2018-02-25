@@ -37,37 +37,45 @@ public class BloggingContext : DbContext
 
 
 /* #第三步  重写OnConfiguring方法，配置数据库连接
+ public class SchoolContext:DbContext
+    {
+        public SchoolContext(DbContextOptions<SchoolContext> options)
+            :base(options)
+            {
 
-protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-{                   
-      optionsBuilder.UseSqlServer(@"Server=.;Database=Mall;Trusted_Connection=True;");
-} */
+            }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {                   
+                  optionsBuilder.UseSqlServer(@"Server=.;Database=Mall;Trusted_Connection=True;");
+            } */
 
 /* #第四步  重写OnModelCreating方法，配置创建model的约束条件
-protected override void OnModelCreating(ModelBuilder modelBuilder)
-{
-        modelBuilder.Entity<Book>(entity =>
-        {
-            entity.Property(e => e.Author)
-                  .IsRequired()
-                  .HasMaxLength(200);
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                  modelBuilder.Entity<Book>(entity =>
+                  {
+                        entity.Property(e => e.Author)
+                              .IsRequired()
+                              .HasMaxLength(200);
 
-            entity.Property(e => e.PublishDate).HasColumnType("datetime");
+                        entity.Property(e => e.PublishDate).HasColumnType("datetime");
 
-            entity.HasIndex(e => e.Isbn)
-                    .HasName("IX_Books_ISBN")
-                    .IsUnique();
+                        entity.HasIndex(e => e.Isbn)
+                              .HasName("IX_Books_ISBN")
+                              .IsUnique();
 
-            entity.Property(e => e.Isbn)
-                    .IsRequired()
-                    .HasColumnName("ISBN")
-                    .HasMaxLength(50);
-        }
-        modelBuilder.Entity<Captcha>(entity =>
-        {
-            //......
-        }
-} */
+                        entity.Property(e => e.Isbn)
+                              .IsRequired()
+                              .HasColumnName("ISBN")
+                              .HasMaxLength(50);
+                  }
+                  modelBuilder.Entity<Captcha>(entity =>
+                  {
+                        //......
+                  }
+            } 
+      }*/
 
 
 /* #第五步：拥有模型后，通过迁移来创建数据库
@@ -129,3 +137,87 @@ context.Database.EnsureCreated(); */
             }
 
 */
+
+/* #第八步 上面都是为codefirst 做准备,最终的目的是生成数据库
+所以无论是webapi 还是webmvc中 ,在Program.cs中修改Main函数,如下
+        public static void Main(string[] args)
+        {
+            //BuildWebHost(args).Run();
+
+            var host = BuildWebHost(args);
+
+            // 当启动应用程序时，DbInitializer.Initialize调用EnsureCreated。
+            // EnsureCreated检测到如果 DB 存在，并且如有必要将创建一个。 
+            using (var scope = host.Services.CreateScope())
+            {
+                var Services = scope.ServiceProvider;
+                try
+                {
+                    //从容器中获取一个数据库上下文，<T>
+                    var context = Services.GetRequiredService<SchoolContext>();
+                    DbInitializer.Initialize(context);
+                }
+                catch (System.Exception ex)
+                {
+                    var logger = Services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex.ToString(), "An error occurred while seeding the database");
+                }
+            }
+            host.Run();
+        } */
+
+
+/* 续 项目中 配置文件 appsettings.json
+
+{
+      "Logging": {
+        "IncludeScopes": false,
+        "Debug": {
+          "LogLevel": {
+            "Default": "Warning"
+          }
+        },
+        "Console": {
+          "LogLevel": {
+            "Default": "Warning"
+          }
+        }
+      },
+      "ConnectionStrings": {
+        "DefaultConnection": "",
+        "MysqlDbConnectionString":"Server=localhost;Database=School;user=root;Password=randy1992;pooling=true;CharSet=utf8;port=3306;sslmode=none",
+        // "MysqlDbConnectionString": "Server=localhost;Database=School;user=root;Password=a287572291;pooling=true;CharSet=utf8;port=3306;sslmode=none",
+        "SqlServerDbConnectionString": "Server=(localdb)\\mssqllocaldb;Database=ContosoUniversity1;ConnectRetryCount=0;Trusted_Connection=True;MultipleActiveResultSets=true"
+      }
+}
+
+
+#Startup.cs中 读取配置的连接字符串
+      public void ConfigureServices(IServiceCollection services)
+        {
+        
+            //连接字符串传给数据库上下文的DbContextOptionsBuilder
+            services.AddDbContext<SchoolDbContext>(option => 
+                    option.UseMySQL(
+                            //读取配置文件appsetting.json获取连接字符串
+                            Configuration.GetConnectionString("MysqlDbConnectionString")
+                            ));
+            services.AddMvc();
+        }
+
+
+#控制器中调用数据库上下文
+
+ public class ValuesController : Controller
+    {
+
+        private readonly SchoolDbContext _context;
+
+        //ASP.NET 依赖关系注入将会负责处理传递的一个SchoolContext数据库上下文实例 插入控制器。
+        public ValuesController(SchoolDbContext context)
+        {
+            _context=context;            
+        }
+      }
+*/
+
