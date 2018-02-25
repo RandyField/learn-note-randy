@@ -1,0 +1,131 @@
+/* #第一步 创建实体(模型类)
+
+
+      Blog.cs
+      public class Blog
+      {
+            public int BlogId { get; set; }
+            public string Url { get; set; }
+
+            public List< Post > Posts { get; set; }
+      }
+
+      Post.cs
+      public class Post
+      {
+            public int PostId { get; set; }
+            public string Title { get; set; }
+            public string Content { get; set; }
+
+            public int BlogId { get; set; }
+            public Blog Blog { get; set; }
+      } */
+
+
+/* #第二步 创建上下文类
+
+
+public class BloggingContext : DbContext
+{
+    public BloggingContext(DbContextOptions<BloggingContext> options)
+        : base(options)
+    { }
+
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+} */
+
+
+/* #第三步  重写OnConfiguring方法，配置数据库连接
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{                   
+      optionsBuilder.UseSqlServer(@"Server=.;Database=Mall;Trusted_Connection=True;");
+} */
+
+/* #第四步  重写OnModelCreating方法，配置创建model的约束条件
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+        modelBuilder.Entity<Book>(entity =>
+        {
+            entity.Property(e => e.Author)
+                  .IsRequired()
+                  .HasMaxLength(200);
+
+            entity.Property(e => e.PublishDate).HasColumnType("datetime");
+
+            entity.HasIndex(e => e.Isbn)
+                    .HasName("IX_Books_ISBN")
+                    .IsUnique();
+
+            entity.Property(e => e.Isbn)
+                    .IsRequired()
+                    .HasColumnName("ISBN")
+                    .HasMaxLength(50);
+        }
+        modelBuilder.Entity<Captcha>(entity =>
+        {
+            //......
+        }
+} */
+
+
+/* #第五步：拥有模型后，通过迁移来创建数据库
+
+工具 - > NuGet软件包管理器 - >软件包管理器控制台
+
+运行 Add-Migration InitialCreate 创建模型的初始表。
+
+运行 Update-Database 以将新迁移应用于数据库。
+约束的配置详细
+
+以上面的Book对象为例：
+
+//为某个字段添加索引，并设置索引名，并设为唯一值
+entity.HasIndex(e => e.Isbn)
+      .HasName("IX_Books_ISBN")
+      .IsUnique();
+
+//为某个字段添加约束，设为必填项，字符串最大长度200
+entity.Property(e => e.Author)
+      .IsRequired()
+      .HasMaxLength(200);
+
+//为某个字段添加约束，设为必填项，设置表中列名并与模型类字段建立映射，字符串最大长度为50
+ entity.Property(e => e.Isbn)
+       .IsRequired()
+       .HasColumnName("ISBN")
+       .HasMaxLength(50);
+
+//为某个字段添加约束，设置该字段在数据库表中列的Type
+entity.Property(e => e.PublishDate).HasColumnType("datetime");
+
+//为某个字段建立与表中列名的映射，并设置默认值
+entity.Property(e => e.Toc)
+      .HasColumnName("TOC")
+      .HasDefaultValueSql("0");
+
+entity.Property(e => e.Title)
+      .IsRequired()
+      .HasMaxLength(200);
+
+entity.Property(e => e.UnitPrice).HasColumnType("money"); */
+
+/* #第六步
+
+//检查数据库是否存在,存在则返回false,并不修改数据库,不存在则创建
+context.Database.EnsureCreated(); */
+
+
+/* #第七步 
+
+判断是否存在哪些必要的数据,存在则返回,不存在则添加 
+
+如下例:
+            //Look for any students-检查数据库中是否存在学生
+            if (context.Students.Any())
+            {
+                return;//DB has been seeded
+            }
+
+*/
