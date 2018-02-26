@@ -45,8 +45,6 @@ dotnet publish
 */
 
 
-
-
 /* 对于.NET开发人员来说，我们已经习惯了VS这个世界上最强大的IDE，所以对他们来说，项目的创建直接利用安装到VS中相应的项目模板即可。当.NET Core跨出了Windows的围栏，正式拥抱其他平台，意味着VS已经不再是唯一的IDE。于此同时，.NETCore充分借鉴了目前非常流行的基于“脚手架（Scaffolding）”的源文件生成方式，在它的核心命令行“dotnet”也添加了脚手架的命令行开关。除此之外，.NET Core真正对社区敞开胸怀，我们可以直接利用现有的脚手架工具Yeoman来生成.NET Core项目。接下来我们就来介绍一下两种生成.NET Core项目的方式。
 		
 		说白了，就是像ionic,angular,nodejs,android,cordova一样，可以用命令行来生成项目。
@@ -71,6 +69,7 @@ dotnet publish
 			接2中命令
 			>dotnet run
 			 */
+
 
 /* 			 
 --------------------------------------------.net core 与framework的关系
@@ -115,8 +114,7 @@ Options:
  */
 
 
-
- /* dotnet publish -r 1.0.0 -o ./rpublish
+/* dotnet publish -r 1.0.0 -o ./rpublish
 Microsoft (R) Build Engine version 15.5.180.51428 for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -127,9 +125,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
  */
 
 
- /* Nuget Package Manager */
+/* Nuget Package Manager */
 
- /* 一个vsc扩展插件,使用vsc的命令面板可以让你方便增加或者删除.NET Core 1.1版本
+
+/* 一个vsc扩展插件,使用vsc的命令面板可以让你方便增加或者删除.NET Core 1.1版本
  以上的包的引用到你的项目中.csproj 或者 .fsproj文件中 
  
  快捷键F1 调用vscode的命令面板
@@ -137,8 +136,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
  Nuget    add  or  remove
  */
 
+
 /* ****************************************************************
 **************************************************************** */
+
 
 /* 建立.net core 解决方案  使用vscode和.net core dotnet命令行 */
 
@@ -200,9 +201,12 @@ dotnet add package Newtonsoft.Json
 */
 
 
+/* dotnet publish --framework netcoreapp2.0 --output "E:\Publish" --configuration Release  */
+
 
 /* https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/startup
 */
+
 
 /* 基础知识中 
 1.应用程序启动(遗漏 启动筛选器) */
@@ -228,6 +232,7 @@ web服务器的available线程数量是有限的
 低流量的情况下,这种引入对性能的影响可以忽略不计的,
 高流量的情况下,对性能的影响就是想当大的. */
 
+
 /* public async Task OnGetAsync()
 {
     Student = await _context.Students.ToListAsync();
@@ -243,6 +248,7 @@ web服务器的available线程数量是有限的
 
     ToListAsync是的异步版本ToList扩展方法。 */
 
+
 /* 编写异步代码,使用EF CORE时需要考虑的事项
 1.以异步的方式执行查询或者命令到数据库的语句
   这包括 ToListAsync， 
@@ -257,4 +263,4 @@ web服务器的available线程数量是有限的
   那些发送查询到数据库的方法是否使用了异步代码. */
 
 
-  /* // "MysqlDbConnectionString":"Server=localhost;Database=School;user=root;Password=randy1992;pooling=true;CharSet=utf8;port=3306;sslmode=none", */
+/* // "MysqlDbConnectionString":"Server=localhost;Database=School;user=root;Password=randy1992;pooling=true;CharSet=utf8;port=3306;sslmode=none", */
