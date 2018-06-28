@@ -12,7 +12,7 @@ b=2
 #字符串String
 s='randyfield'
 
-#列表List-Python 中使用最频繁的数据类型-列表可以完成大多数集合类的数据结构实现加号 + 是列表连接运算符，星号 * 是重复操作。
+#列表List-【Python 中使用最频繁的数据类型】-列表可以完成大多数集合类的数据结构实现加号 + 是列表连接运算符，星号 * 是重复操作。
 testlist=['randy','field',25,'四川省']
 
 #元组Tuple 类似List () 只读
@@ -45,9 +45,9 @@ def FunctionName(args):
 # 可写函数说明
 def printinfo( name, age ):
    "打印任何传入的字符串"
-   print "Name: ", name;
-   print "Age ", age;
-   return;
+   print "Name: ", name
+   print "Age ", age
+   return
  
 # 调用printinfo函数
 printinfo( age=50, name="miki" );    
@@ -70,6 +70,16 @@ from modname import name1[, name2[, ... nameN]]
 #    3、如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。
 #
 # 模块搜索路径存储在 system 模块的 sys.path 变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录。
+
+# "import module_name" 的本质是将"module_name.py"中的全部代码加载到内存并赋值给与模块同名的变量写在当前文件中,
+# 这个变量的类型是'module'；<module 'module_name' from 'E:\\PythonImport\\module_name.py'>
+
+# 导入一个模块
+import model_name
+# 导入多个模块
+import module_name1,module_name2
+# 导入模块中的指定的属性、方法（不加括号）、类
+from moudule_name import moudule_element [as new_name]
 
 
 #dir() 函数一个排好序的字符串列表，内容是一个模块里定义过的名字。
@@ -194,4 +204,5 @@ print counter.__secretCount  # 报错，实例不能访问私有变量
 # _foo: 以单下划线开头的表示的是 protected 类型的变量，即保护类型只能允许其本身与子类进行访问，不能用于 from module import *
 
 # __foo: 双下划线的表示的是私有类型(private)的变量, 只能是允许这个类本身进行访问了。
+
 

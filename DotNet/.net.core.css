@@ -45,7 +45,11 @@ dotnet publish
 */
 
 
-/* 对于.NET开发人员来说，我们已经习惯了VS这个世界上最强大的IDE，所以对他们来说，项目的创建直接利用安装到VS中相应的项目模板即可。当.NET Core跨出了Windows的围栏，正式拥抱其他平台，意味着VS已经不再是唯一的IDE。于此同时，.NETCore充分借鉴了目前非常流行的基于“脚手架（Scaffolding）”的源文件生成方式，在它的核心命令行“dotnet”也添加了脚手架的命令行开关。除此之外，.NET Core真正对社区敞开胸怀，我们可以直接利用现有的脚手架工具Yeoman来生成.NET Core项目。接下来我们就来介绍一下两种生成.NET Core项目的方式。
+/* 对于.NET开发人员来说，我们已经习惯了VS这个世界上最强大的IDE，所以对他们来说，项目的创建直接利用安装到VS中相应的项目模板即可。
+当.NET Core跨出了Windows的围栏，正式拥抱其他平台，意味着VS已经不再是唯一的IDE。
+于此同时，.NETCore充分借鉴了目前非常流行的基于“脚手架（Scaffolding）”的源文件生成方式，
+在它的核心命令行“dotnet”也添加了脚手架的命令行开关。
+除此之外，.NET Core真正对社区敞开胸怀，我们可以直接利用现有的脚手架工具Yeoman来生成.NET Core项目。接下来我们就来介绍一下两种生成.NET Core项目的方式。
 		
 		说白了，就是像ionic,angular,nodejs,android,cordova一样，可以用命令行来生成项目。
 		
