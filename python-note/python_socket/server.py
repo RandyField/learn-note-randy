@@ -9,7 +9,7 @@ import sys
 serversocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 #获取本地主机名
-host=socket.gethostname();
+host=socket.gethostname()
 
 port=9999
 
@@ -18,7 +18,7 @@ serversocket.bind((host,port))
 
 print("主机%s，监听%d端口 "%(host,port))
 
-#设置最大连接数，炒股后排队
+#设置最大连接数，超过后排队
 serversocket.listen(5)
 
 while True:
