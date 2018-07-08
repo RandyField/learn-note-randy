@@ -87,7 +87,7 @@ import math
  
 content = dir(math)
  
-print content;
+print content
 
 # reload() 函数
 #
@@ -173,7 +173,7 @@ class Parent:        # 定义父类
  
    def getAttr(self):
       print "父类属性 :", Parent.parentAttr
- 
+#  继承
 class Child(Parent): # 定义子类
    def __init__(self):
       print "调用子类构造方法"
