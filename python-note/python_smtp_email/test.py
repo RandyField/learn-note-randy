@@ -16,17 +16,17 @@ mail_pass="Aa287572291"   #口令
 sender='zhangdeng@zhiyuanhui.com'
 
 #接受者
-receivers=['287572291@qq.com','86106255@qq.com']
+receivers=['287572291@qq.com']
 
 # 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码
 #内容
 message = MIMEText('Python 邮件发送测试...', 'plain', 'utf-8')
 
 #发件人
-message['From'] = Header("zhangdeng", 'utf-8')
+message['From'] = Header("张登 <zhangdeng@zhiyuanhui.com>", 'utf-8')
 
 #收件人
-message['To'] =  Header("测试", 'utf-8')
+message['To'] =  Header("停摆Dê时针 <287572291@qq.com>", 'utf-8')
 
 #标题
 subject="python SMTP 邮件测试"

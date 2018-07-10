@@ -381,3 +381,8 @@ print counter.__secretCount  # 报错，实例不能访问私有变量
 
 # 【请求数据】
 # 在 Flask 中由全局 对象 request 来提供请求信息
+
+# 【请求对象】
+# 【文件上传】
+# 【Cookies】
+# 【重定向和错误】
