@@ -386,3 +386,20 @@ print counter.__secretCount  # 报错，实例不能访问私有变量
 # 【文件上传】
 # 【Cookies】
 # 【重定向和错误】
+
+
+# 初始化数据库文件
+
+# 现在 init-db 已经在应用中注册好了，可以与 flask 命令一起使用了。 使用的方式与前一页的 run 命令类似。
+
+# Note
+
+# 如果你还在运行着前一页的服务器，那么现在要么停止该服务器，要么在新的 终端中运行这个命令。
+# 如果是新的终端请记住在进行项目文件夹【激活环境， 参见 激活虚拟环境】 。同时还要像前一页所述设置 FLASK_APP 和 FLASK_ENV 。
+
+# 运行 init-db 命令：
+
+# flask init-db
+# Initialized the database.
+
+# 现在会有一个 flaskr.sqlite 文件出现在项目所在文件夹的 instance 文件夹 中。
