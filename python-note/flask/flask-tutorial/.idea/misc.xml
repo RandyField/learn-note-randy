@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.1 virtualenv at E:\GitHub\learn-note-randy\python-note\flask\flask-tutorial\venv" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 virtualenv at G:\github\learn-note-randy\python-note\flask\flask-tutorial\venv" project-jdk-type="Python SDK" />
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
   <component name="PyCharmProfessionalAdvertiser">
     <option name="shown" value="true" />
   </component>

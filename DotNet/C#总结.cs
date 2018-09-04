@@ -1,19 +1,20 @@
-// *******************************************************我是分割线 匿名类********************************************************************************************
-/* #匿名类 
+// *******************************************************我是分割线 
+// 【匿名类】********************************************************************************************
+//  匿名类 
 var annoyCla=new {
     ID=10010,
     Name="Randy",
     Age=25
 } 
 
-Reflector反编译
-　　（1）匿名类被编译后会生成一个[泛型类]，<>f__AnonymousType0<<ID>j__TPar, <Name>j__TPar, <Age>j__TPar>就是一个泛型类；
+// Reflector反编译
+// 　　（1）匿名类被编译后会生成一个[泛型类]，<>f__AnonymousType0<<ID>j__TPar, <Name>j__TPar, <Age>j__TPar>就是一个泛型类；
 
-　　（2）匿名类所生成的属性都是只读的，可以看出与其对应的字段也是只读的；
+// 　　（2）匿名类所生成的属性都是只读的，可以看出与其对应的字段也是只读的；
 
-    （3）可以看出，匿名类还重写了基类的三个方法：Equals,GetHashCode和ToString；我们可以看看它为我们所生成的ToString方法是怎么来实现的：
-*/
+//     （3）可以看出，匿名类还重写了基类的三个方法：Equals,GetHashCode和ToString；我们可以看看它为我们所生成的ToString方法是怎么来实现的：
 
+<<<<<<< HEAD
 
 
 
@@ -98,9 +99,18 @@ nc();
 
 C# ----- 匿名方法
 // *******************************************************我是分割线 委托 泛型委托*****************************************************************************************************
+=======
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
 
+// *******************************************************我是分割线
+// 【委托 泛型委托】*******************************************************************************************
 
+<<<<<<< HEAD
 //定义委托-买书动作
+=======
+----------------------------delegate  参数为方法---------------------------
+//定义委托-买书
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
 private delegate void BuyBook();
 
 //定义方法-书店卖书动作
@@ -115,10 +125,15 @@ BuyBook buybook=new BuyBook(Book);
 //买书的从卖书的那里拿书
 buybook();
 
+<<<<<<< HEAD
 
 
 
 //买一本书籍，每次都让我定义下，烦死了，有没有一种方法不去定义委托呢
+=======
+-----------------------------------委托之Action------------------------------------
+//买一本书籍，每次都让我定义下，烦死了，有没有一种方法不去定义委托
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
 Action BookAction=new Action(Book);
         BookAction();
 
@@ -132,6 +147,7 @@ public static void Book(string Bookname)
     Console.WriteLine("我要买书，书名是:{0}",Bookname);
 }
 
+-----------------------------------委托之Aciton，方法中含单参数----------------
 public static void Main(string[] args)
 {
     Action<string> BookAction =new Action<string>(Book);
@@ -142,6 +158,8 @@ public static void Main(string[] args)
 
 // 我不仅要自己选择书籍，我还要在一个牛逼的书籍厂家买，
 //有没有这种方式呢，那么告诉你有，Action<in T1,in T2>
+
+-----------------------------------委托之Aciton，方法中含多参数----------------
 static void Main(string[] args)
 {
     Action<string,string> BookAction = new Action<string,string>(Book);
@@ -153,9 +171,33 @@ public static void Book(string BookName,string ChangJia)
     Console.WriteLine("我是买书的是:{0}来自{1}",BookName,ChangJia);
 }
 
+<<<<<<< HEAD
 
 
 // Func 解释 
+=======
+// 我的想法  
+--定义一个支付方式
+static void Pay(string payway,string money)
+{
+    Console.WriteLine("只用支付方式：{0},支付金额:{1}",payway,money)
+}
+
+--定义一个委托
+Action<string,string> payAction=new Action<string,string>(Pay);
+payAction("支付宝","2000");
+
+
+--static vod Pay(Action<string,string> payAction)
+// --参数为委托，此委托要求两个参数
+pay((pay,money)=>{
+    Console.WriteLine("只用支付方式：{0},支付金额:{1}",payway,money)
+})
+
+pay
+
+-------------------------------委托之Func 
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
 //封装一个不一定具有参数（也许没有）
 //但却返回 TResult 参数指定的类型值的 【方法】。
 
@@ -230,34 +272,125 @@ public static void Book(string BookName,string ChangJia)
 
 　　      例：public delegate bool Predicate<T> (T obj)
 
-// *******************************************************我是分割线 事件的***********************************************************************************************************
+// *******************************************************我是分割线 
+// 事件***********************************************************************************************************
 
-//定义委托
-public delegate void BoilerLogHandler(string status);
+        //定义委托
+        public delegate void BoilerLogHandler(string status);
 
-// 基于上面的委托定义事件
-public event BoilerLogHandler BoilerEventLog;
+        // 基于上面的委托定义事件
+        public event BoilerLogHandler BoilerEventLog;
 
-// 该事件在生成的时候会调用委托。
+        // 该事件在生成的时候会调用委托。
 
 
-BoilerEventLog+=new BoilerLogHandler(Logger);
+        BoilerEventLog+=new BoilerLogHandler(Logger);
 
- static void Logger(string info)
+        static void Logger(string info)
+        {
+            Console.WriteLine(info);
+        }//end 
+
+// *******************************************************我是分割线 泛型*****************************************************************************************************
+
+    它有助于您最大限度地重用代码、保护类型的安全以及提高性能。
+    
+    您可以创建泛型集合类。.NET 框架类库在 System.Collections.Generic 命名空间中包含了一些新的泛型集合类。
+    
+    您可以使用这些泛型集合类来替代 System.Collections 中的集合类。
+    
+    您可以创建自己的泛型接口、泛型类、泛型方法、泛型事件和泛型委托。
+    
+    您可以对泛型类进行约束以访问特定数据类型的方法。
+    
+    关于【泛型数据类型中】【使用的类型的信息】可在【运行时】通过【使用反射】获取。
+
+    //泛型(Generic)方法
+    static void Swap<T>(ref T lhs,ref T rhs)
+    {
+        T temp;
+        temp=lhs;
+        lhs=rhs;
+        rhs=temp;
+    }
+
+    //泛型委托
+    delegate T NumberChanger<T>(T n);
+
+    //在声明泛型方法/泛型类的时候，可以给泛型加上一定的约束来满足特定的一些条件
+    public class CacheHelper<T> where T:new()
+    {
+        
+    }
+
+    T：结构（类型参数必须是值类型。可以指定除 Nullable 以外的任何值类型）
+    T：类 （类型参数必须是引用类型，包括任何类、接口、委托或数组类型）
+    T：new() （类型参数必须具有无参数的公共构造函数。当与其他约束一起使用时new() 约束必须最后指定）
+    T：< 基类名> 类型参数必须是指定的基类或派生自指定的基类
+    T：< 接口名称> 类型参数必须是指定的接口或实现指定的接口。可以指定多个接口约束。约束接口也可以是泛型的。
+    T：U 
+
+    在封装公共组件的时候，很多时候我们的类/方法不需要关注调用者传递的实体是"什么"，这个时候就可以使用泛型。
+
+    比如：
+
+    using System;
+    using System.Web.Caching;
+
+    namespace Xy.CacheManager
+    {
+        public class CacheHelper<T>
+        {
+            //获取缓存实体
+            public static T Get(Cache cache,string cacheKey)
+            {
+                //....缓存操作
+            } 
+            //插入缓存
+            public static void Set(Cache cache T tEntity,string cacheKey)
+            {
+                //....缓存操作
+            }
+        }
+    }
+// *******************************************************我是分割线 
+匿名方法*****************************************************************************************************
+
+匿名方法（Anonymous methods） 提供了一种【传递代码块】作为【委托参数】的技术。匿名方法是没有名称只有主体的方法。
+
+delegate void NumberChanger(int n);
+...
+NumberChanger nc = delegate(int x)
 {
-    Console.WriteLine(info);
-}//end 
+    Console.WriteLine("Anonymous Method: {0}", x);
+};
 
+<<<<<<< HEAD
 
 
 
 
 // *******************************************************我是分割线 特性 待补充***********************************************************************************************************
+=======
+NumberChanger nc = x=>{Console.WriteLine("Anonymous Method: {0}", x);}
+
+//调用
+nc();
+
+类比js  var a= function(){}
+
+C# ----- 匿名方法
+
+
+// *******************************************************我是分割线 
+// 【特性】 待补充***********************************************************************************************************
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
 特性（Attribute）是用于在【运行时】传递程序中各种元素（比如类、方法、结构、枚举、组件等）的行为信息的声明性标签。
 
 可以通过使用特性向程序添加【声明性信息】。一个声明性标签是通过放置在它所应用的元素前面的方括号（[ ]）来描述的。
 
 
+<<<<<<< HEAD
 
 
 
@@ -266,6 +399,10 @@ BoilerEventLog+=new BoilerLogHandler(Logger);
 
 
 // *******************************************************我是分割线 C#中 Thread，Task，Async/Await，IAsyncResult 的那些事儿！***********************************************************************************************************
+=======
+// *******************************************************我是分割线 C#中 
+// Thread，Task，Async/Await，IAsyncResult 的那些事儿！***********************************************************************************************************
+>>>>>>> a7d949d0b57b48c5bac859b86551d0e3e9863823
 
 //1.线程
 //IsBackground=true,将其设置为后台线程
@@ -308,7 +445,7 @@ static void Run()
 for (int i = 0; i < length; i++)
 {
     ThreadPool.QueueUserWorkItem(m=>{
-    Console.WriteLine(Thread.CurrentThread.ManageThreadId.ToString());
+        Console.WriteLine(Thread.CurrentThread.ManageThreadId.ToString());
     })
 }
 
@@ -339,43 +476,65 @@ static void SemaphoreTest()
 
 
 //5、Task
-Task是.NET4.0加入的，跟线程池ThreadPool的功能类似，
-用Task开启新任务时，会从线程池中调用线程，
-而Thread每次实例化都会创建一个新的线程
+Task是.NET4.0加入的，
+
+跟线程池ThreadPool的功能类似，
+
+用Task开启新任务时，
+
+会从线程池中调用线程，
+
+而Thread每次实例化
+
+都会创建一个新的线程
 
 Console.WriteLine("主线程启动");
-//Task.Run启动一个线程
-//Task启动的是后台线程，要在主线程中等待后台线程执行完毕，可以调用Wait方法
-//Task task = Task.Factory.StartNew(() => { Thread.Sleep(1500); Console.WriteLine("task启动"); });
+
+// Task.Run启动一个线程
+
+// 【Task启动的是后台线程】，
+
+// 要在主线程中【等待后台线程】执行完毕，可以调用Wait方法
+
+// Task task = Task.Factory.StartNew(() => { Thread.Sleep(1500); Console.WriteLine("task启动"); });
 Task task = Task.Run(() => { 
     Thread.Sleep(1500);
     Console.WriteLine("task启动");
 });
+
 Thread.Sleep(300);
+
 task.Wait();
+
 Console.WriteLine("主线程结束");
 
 //开启新任务的方法：Task.Run()或者Task.Factory.StartNew()，开启的是后台线程
 
 //要在主线程中等待后台线程执行完毕，
-//可以使用Wait方法(会以同步的方式来执行)。不用Wait则会以异步的方式来执行。
+
+//可以使用Wait方法(会以同步的方式来执行)。
+
+//不用Wait则会以异步的方式来执行。
 
 // Task<TResult>就是有返回值的Task，TResult就是返回值类型。
 
 
 Console.WriteLine("主线程开始");
+
 //返回值类型为string
 Task<string> task = Task<string>.Run(() => {
     Thread.Sleep(2000); 
     return Thread.CurrentThread.ManagedThreadId.ToString(); 
 });
+
 //会等到task执行完毕才会输出;
+
 Console.WriteLine(task.Result);
 Console.WriteLine("主线程结束");
 
 
 //6、async/await是C#5.0中推出的
-tatic void Main(string[] args)
+static void Main(string[] args)
 {
     Console.WriteLine("-------主线程启动-------");
     Task<int> task = GetStrLengthAsync();
@@ -387,9 +546,12 @@ tatic void Main(string[] args)
 static async Task<int> GetStrLengthAsync()
 {
     Console.WriteLine("GetStrLengthAsync方法开始执行");
+
     //此处返回的<string>中的字符串类型，而不是Task<string>
     string str = await GetString();
+
     Console.WriteLine("GetStrLengthAsync方法执行结束");
+    
     return str.Length;
 }
 
