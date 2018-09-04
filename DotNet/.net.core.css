@@ -204,15 +204,15 @@ dotnet sln randy-net-core-sln.sln add Web/Web.csproj
 
    8.web project中引入其余classlib project
 
-dotnet add Web/Web.csproj reference BLL/BLL.csproj
+    dotnet add Web/Web.csproj reference BLL/BLL.csproj
 
-dotnet add Web/Web.csproj reference MODEL/MODEL.csproj
+    dotnet add Web/Web.csproj reference MODEL/MODEL.csproj
 
 
    9.通用引入package(eg:引入Newtonsoft.Json)
 
-cd Web
-dotnet add package Newtonsoft.Json
+      cd Web
+      dotnet add package Newtonsoft.Json
 
 
    10.大多数时候我们并不记得package name,所以使用上面的nuget package manager
