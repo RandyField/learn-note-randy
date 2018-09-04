@@ -201,16 +201,19 @@ dotnet sln randy-net-core-sln.sln add MODEL/MODEL.csproj
 
 dotnet sln randy-net-core-sln.sln add Web/Web.csproj
 
+
    8.web project中引入其余classlib project
 
 dotnet add Web/Web.csproj reference BLL/BLL.csproj
 
 dotnet add Web/Web.csproj reference MODEL/MODEL.csproj
 
+
    9.通用引入package(eg:引入Newtonsoft.Json)
 
 cd Web
 dotnet add package Newtonsoft.Json
+
 
    10.大多数时候我们并不记得package name,所以使用上面的nuget package manager
 
@@ -218,6 +221,7 @@ dotnet add package Newtonsoft.Json
    看sln的资料,感觉就是为之前visual studio 2017 ide服务的,喔,突然想起了以前开发时,双击sln文件,就直接
    用vs打开了整个解决方案,所以这里我姑且猜测,我们在ubuntu或者其他linux发行版开发时,我们是不需要建立解决
    方案.
+
 
    12.补充发布命令,cd Web目录下,dotnet publish -o ../Publish
 
@@ -240,36 +244,39 @@ dotnet add package Newtonsoft.Json
 
 
 /* 
-异步编程是asp.net core 和ef core的默认模式，
 
-web服务器的available线程数量是有限的，
+    异步编程是asp.net core 和ef core的默认模式，
 
-并且在高负载情况下,所有的available线程可能都在使用，
+    web服务器的available线程数量是有限的，
 
-这种情况下,服务器是无法处理请求的,除非线程被释放，
+    并且在高负载情况下,所有的available线程可能都在使用，
 
-在同步代码中,多个线程可能启用,但是他们实际上是什么都没用做,
+    这种情况下,服务器是无法处理请求的,除非线程被释放，
 
-因为他们可能正在等待I/O完成，
+    在同步代码中,多个线程可能启用,但是他们实际上是什么都没用做,
 
-而在异步代码中,当一个进程在等待I/O完成时,对于服务器来讲,它的线程
+    因为他们可能正在等待I/O完成，
 
-是被释放的,而去处理其他请求.
+    而在异步代码中,当一个进程在等待I/O完成时,对于服务器来讲,它的线程
 
-所以,异步代码的使用,使服务器资源能够更加有效的使用,去接收更多流量的请求
+    是被释放的,而去处理其他请求.
 
-而不会延迟.
+    所以,异步代码的使用,使服务器资源能够更加有效的使用,去接收更多流量的请求
 
-运行时,异步代码引入,会有少量的开销,
+    而不会延迟.
 
-低流量的情况下,这种引入对性能的影响可以忽略不计的,
+    运行时,异步代码引入,会有少量的开销,
 
-高流量的情况下,对性能的影响就是想当大的. 
+    低流量的情况下,这种引入对性能的影响可以忽略不计的,
+
+    高流量的情况下,对性能的影响就是想当大的. 
 
 */
 
 
-/* public async Task OnGetAsync()
+/* 
+
+public async Task OnGetAsync()
 {
     Student = await _context.Students.ToListAsync();
 }
@@ -283,10 +290,12 @@ web服务器的available线程数量是有限的，
     隐式返回类型Task表示正在进行的工作。
 
     await关键字会导致编译器拆分为两个部分的方法。 
-      第一部分结尾以异步方式启动该操作。 
-      第二部分被放入操作完成时调用的回调方法。
+      ----第一部分结尾以异步方式启动该操作。 
+      ----第二部分被放入操作完成时调用的回调方法。
 
-    ToListAsync是的异步版本ToList扩展方法。 */
+    ToListAsync是的异步版本ToList扩展方法。 
+    
+*/
 
 
 /* 编写异步代码,使用EF CORE时需要考虑的事项
