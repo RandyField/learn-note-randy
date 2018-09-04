@@ -14,6 +14,10 @@ Reflector反编译
     （3）可以看出，匿名类还重写了基类的三个方法：Equals,GetHashCode和ToString；我们可以看看它为我们所生成的ToString方法是怎么来实现的：
 */
 
+
+
+
+
 // *******************************************************我是分割线 泛型*****************************************************************************************************
 
     它有助于您最大限度地重用代码、保护类型的安全以及提高性能。
@@ -63,12 +67,14 @@ Reflector反编译
     public class CacheHelper<T>
     {
         //获取缓存实体
-        public static T Get(Cache cache,string cacheKey)
+        public static T Get(string cacheKey)
         {
+             System.Web.Caching.Cache objCache = HttpRuntime.Cache;
+            return objCache[CacheKey];
             //....缓存操作
         } 
         //插入缓存
-        public static void Set(Cache cache T tEntity,string cacheKey)
+        public static void Set(tEntity,string cacheKey)
         {
             //....缓存操作
         }
@@ -94,10 +100,10 @@ C# ----- 匿名方法
 // *******************************************************我是分割线 委托 泛型委托*****************************************************************************************************
 
 
-//定义委托-买书
+//定义委托-买书动作
 private delegate void BuyBook();
 
-//定义方法-书店卖书
+//定义方法-书店卖书动作
 public static void Book()
 {
     Console.WriteLine("我提供书籍");
@@ -106,12 +112,18 @@ public static void Book()
 //实例化委托       建立关系
 BuyBook buybook=new BuyBook(Book);
 
-//拿书
+//买书的从卖书的那里拿书
 buybook();
+
+
+
 
 //买一本书籍，每次都让我定义下，烦死了，有没有一种方法不去定义委托呢
 Action BookAction=new Action(Book);
         BookAction();
+
+
+
 
 //想买本其他书，那怎么办，我是不是要重新再次定义委托。
 //其实不需要你只需要把参数传过来就可以了。下面我们看Action<T>的用法
@@ -126,6 +138,8 @@ public static void Main(string[] args)
     BookAction("百年孤独");
 }
 
+
+
 // 我不仅要自己选择书籍，我还要在一个牛逼的书籍厂家买，
 //有没有这种方式呢，那么告诉你有，Action<in T1,in T2>
 static void Main(string[] args)
@@ -139,6 +153,8 @@ public static void Book(string BookName,string ChangJia)
     Console.WriteLine("我是买书的是:{0}来自{1}",BookName,ChangJia);
 }
 
+
+
 // Func 解释 
 //封装一个不一定具有参数（也许没有）
 //但却返回 TResult 参数指定的类型值的 【方法】。
@@ -147,7 +163,7 @@ public static void Book(string BookName,string ChangJia)
     static void Main(string[] args)
     {
         Func<string> RetBook = new Func<string>(FuncBook);
-        Console.WriteLine(RetBook);
+        Console.WriteLine(RetBook());
     }
 
     public static string FuncBook()
@@ -232,10 +248,21 @@ BoilerEventLog+=new BoilerLogHandler(Logger);
     Console.WriteLine(info);
 }//end 
 
+
+
+
+
 // *******************************************************我是分割线 特性 待补充***********************************************************************************************************
 特性（Attribute）是用于在【运行时】传递程序中各种元素（比如类、方法、结构、枚举、组件等）的行为信息的声明性标签。
 
 可以通过使用特性向程序添加【声明性信息】。一个声明性标签是通过放置在它所应用的元素前面的方括号（[ ]）来描述的。
+
+
+
+
+
+
+
 
 
 // *******************************************************我是分割线 C#中 Thread，Task，Async/Await，IAsyncResult 的那些事儿！***********************************************************************************************************
