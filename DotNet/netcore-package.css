@@ -1,0 +1,24 @@
+/* Microsoft.Extensions.Configuration-使用IConfiguration接口,提供运行时配置设置 */
+
+/* Microsoft.EntityFrameworkCore-EF使用 */
+
+/* System.Runtime-最进出的.net core 包，包括Object.String.Array.Action和IList<T> */
+
+/* System.Collections-泛型集合，包括List<T>和Dictionary<Tkey,TValue> */
+
+/* System.Net.Http - 用于 HTTP 网络通信的类型，包括 HttpClient 和 HttpResponseMessage。 */
+
+/* System.IO.FileSystem - 用于读写到本地或网络磁盘存储的类型，包括 File 和 Directory。 */
+
+/* System.Linq - 用于查询对象的类型，包括 Enumerable 和 ILookup<TKey,TElement>。 */
+
+/* System.Reflection - 用于加载、检查和激活类型的类型，包括 Assembly、TypeInfo 和 MethodInfo。 */
+
+/* Packages-包,Metapackages-元包 and Frameworks-框架
+    
+NuGet包组成了.NET Core
+    
+单个包-元包
+
+
+*/
