@@ -1,0 +1,153 @@
+1、下载,其实erlang不装也是可以的
+
+下载 rabbitMQ ：http://www.rabbitmq.com/download.html，安装rabbitmq需要erlang，下载erlang：http://www.erlang.org/download.html
+
+ 
+
+2、安装RABBITMQ
+
+rabbitMQ安装，查看安装文档：http://www.rabbitmq.com/install-windows.html
+
+ 
+
+3、安装erlang，下载完成erlang后，直接打开文件下一步就可以安装完成了，安装完成erlang后再回过来安装RABBITMQ。
+
+ 
+
+4、启动RABBITMQ
+
+RabbitMQ Service - start
+
+cd到如下目录：
+RabbitMQ Server\rabbitmq_server-3.2.2\sbin
+
+执行命令：rabbitmq-plugins enable rabbitmq_management
+
+安装插件
+
+localhost:15672上就可以登录管理后台
+
+
+/* RabbitMQ的用户角色分类： */
+
+【none】、【management】、【policymaker】、【monitoring】、【administrator】
+
+1、none
+    不能访问 management plugin
+
+
+2、management
+    用户可以通过AMQP做的任何事外加：
+    列出自己可以通过AMQP登入的virtual hosts  
+    查看自己的virtual hosts中的queues, exchanges 和 bindings
+    查看和关闭自己的channels 和 connections
+    查看有关自己的virtual hosts的“全局”的统计信息，包含其他用户在这些virtual hosts中的活动。
+
+3、policymaker 
+    management可以做的任何事外加：
+    查看、创建和删除自己的virtual hosts所属的policies和parameters
+
+4、monitoring
+    management可以做的任何事外加：
+    列出所有virtual hosts，包括他们不能登录的virtual hosts
+    查看其他用户的connections和channels
+    查看节点级别的数据如clustering和memory使用情况
+    查看真正的关于所有virtual hosts的全局的统计信息
+
+5、administrator   
+    policymaker和monitoring可以做的任何事外加:
+    创建和删除virtual hosts
+    查看、创建和删除users
+    查看创建和删除permissions
+    关闭其他用户的connections
+
+
+    /* 命令行 */
+
+创建用户并设置角色：
+可以创建管理员用户，负责整个MQ的运维，例如：
+
+    $sudo rabbitmqctl add_user  user_admin  passwd_admin
+
+赋予其administrator角色：
+
+    $sudo rabbitmqctl set_user_tags user_admin administrator
+
+
+可以创建RabbitMQ监控用户，负责整个MQ的监控，例如：
+
+    $sudo rabbitmqctl add_user  user_monitoring  passwd_monitor
+
+赋予其monitoring角色：
+
+    $sudo rabbitmqctl set_user_tags user_monitoring monitoring
+
+
+可以创建某个项目的专用用户，只能访问项目自己的virtual hosts
+
+    $sudo rabbitmqctl  add_user  user_proj  passwd_proj
+
+赋予其monitoring角色：
+
+    $sudo rabbitmqctl set_user_tags user_proj management
+
+
+创建和赋角色完成后查看并确认：
+
+    $sudo rabbitmqctl list_users
+
+
+
+    /* ########################
+    #RabbitMQ 权限控制：
+    ########################
+    默认virtual host："/"
+    默认用户：guest 
+    guest具有"/"上的全部权限，仅能有localhost访问RabbitMQ包括Plugin，建议删除或更改密码。
+    
+    可通过将配置文件中loopback_users置孔来取消其本地访问的限制：
+    [{rabbit, [{loopback_users, []}]}] */
+    
+    用户仅能对其所能访问的virtual hosts中的资源进行操作。
+    
+    /* 这里的资源指的是virtual hosts中的exchanges、queues等，操作包括对资源进行配置、写、读。 */
+    
+    /* 配置权限可创建、删除、资源并修改资源的行为，写权限可向资源发送消息，读权限从资源获取消息。比如：
+
+    exchange和queue的declare与delete分别需要exchange和queue上的配置权限
+
+    exchange的bind与unbind需要exchange的读写权限
+
+    queue的bind与unbind需要queue写权限exchange的读权限
+
+    发消息(publish)需exchange的写权限
+
+    获取或清除(get、consume、purge)消息需queue的读权限 */
+
+
+    
+    对何种资源具有配置、写、读的权限通过正则表达式来匹配，具体命令如下：
+
+    set_permissions [-p <vhostpath>] <user> <conf> <write> <read>
+
+    其中，<conf> <write> <read>的位置分别用正则表达式来匹配特定的资源，
+    
+    如'^(amq\.gen.*|amq\.default)$'可以匹配server生成的和默认的exchange，'^$'不匹配任何资源
+    
+    /* 需要注意的是RabbitMQ会缓存每个connection或channel的权限验证结果、因此权限发生变化后需要重连才能生效。 */
+    
+    为用户赋权：
+    
+    $sudo rabbitmqctl  set_permissions -p /vhost1  user_admin '.*' '.*' '.*'
+    
+    该命令使用户user_admin具有/vhost1这个virtual host中所有资源的配置、写、读权限以便管理其中的资源
+    
+    查看权限：
+
+    $sudo rabbitmqctl list_user_permissions user_admin
+Listing permissions for user "user_admin" ...
+/vhost1<span style="white-space:pre">	</span>.*<span style="white-space:pre">	</span>.*<span style="white-space:pre">	</span>.*
+ 
+$sudo rabbitmqctl list_permissions -p /vhost1
+Listing permissions in vhost "/vhost1" ...
+user_admin<span style="white-space:pre">	</span>.*<span style="white-space:pre">	</span>.*<span style="white-space:pre">	</span>.*
